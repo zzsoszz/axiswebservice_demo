@@ -1,0 +1,8 @@
+基于axis1.4
+
+
+统一创建流程查看一下目录
+D:\bxdev\trunck\website\axiswebservice\doc\电信\广西和集团
+
+
+http://127.0.0.1:9001/axiswebservice/services/IsmpSpEngine?wsdl

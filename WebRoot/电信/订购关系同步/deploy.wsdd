@@ -1,0 +1,86 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from IsmpSpEngineService WSDL service -->
+
+  <service name="IsmpSpEngine" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://sp.ismp.chinatelecom.com"/>
+      <parameter name="wsdlServiceElement" value="IsmpSpEngineService"/>
+      <parameter name="schemaQualified" value="http://rsp.sp.ismp.chinatelecom.com,http://sp.ismp.chinatelecom.com,http://req.sp.ismp.chinatelecom.com"/>
+      <parameter name="wsdlServicePort" value="IsmpSpEngine"/>
+      <parameter name="className" value="com.bxtel.dxgx.webservice1.IsmpSpEngineSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="IsmpSpEngine"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="orderRelationUpdateNotify" qname="orderRelationUpdateNotify" returnQName="retNS:orderRelationUpdateNotifyReturn" xmlns:retNS="http://sp.ismp.chinatelecom.com" returnType="rtns:Response" xmlns:rtns="http://rsp.sp.ismp.chinatelecom.com" >
+        <parameter qname="pns:orderRelationUpdateNotifyReq" xmlns:pns="http://sp.ismp.chinatelecom.com" type="tns:OrderRelationUpdateNotifyReq" xmlns:tns="http://req.sp.ismp.chinatelecom.com"/>
+      </operation>
+      <operation name="spWithdrawSubscription" qname="spWithdrawSubscription" returnQName="retNS:spWithdrawSubscriptionReturn" xmlns:retNS="http://sp.ismp.chinatelecom.com" returnType="rtns:Response" xmlns:rtns="http://rsp.sp.ismp.chinatelecom.com" >
+        <parameter qname="pns:spWithdrawSubscriptionReqPara" xmlns:pns="http://sp.ismp.chinatelecom.com" type="tns:SPWithdrawSubscriptionReq" xmlns:tns="http://req.sp.ismp.chinatelecom.com"/>
+      </operation>
+      <operation name="serviceConsumeNotify" qname="serviceConsumeNotify" returnQName="retNS:serviceConsumeNotifyReturn" xmlns:retNS="http://sp.ismp.chinatelecom.com" returnType="rtns:Response" xmlns:rtns="http://rsp.sp.ismp.chinatelecom.com" >
+        <parameter qname="pns:serviceConsumeNotifyReqPara" xmlns:pns="http://sp.ismp.chinatelecom.com" type="tns:ServiceConsumeNotifyReq" xmlns:tns="http://req.sp.ismp.chinatelecom.com"/>
+      </operation>
+      <operation name="notifyManagementInfo" qname="notifyManagementInfo" returnQName="retNS:notifyManagementInfoReturn" xmlns:retNS="http://sp.ismp.chinatelecom.com" returnType="rtns:NotifyManagementInfoRsp" xmlns:rtns="http://rsp.sp.ismp.chinatelecom.com" >
+        <parameter qname="pns:notifyManagementInfoReq" xmlns:pns="http://sp.ismp.chinatelecom.com" type="tns:NotifyManagementInfoReq" xmlns:tns="http://req.sp.ismp.chinatelecom.com"/>
+      </operation>
+      <parameter name="allowedMethods" value="serviceConsumeNotify spWithdrawSubscription notifyManagementInfo orderRelationUpdateNotify"/>
+
+      <typeMapping
+        xmlns:ns="http://req.sp.ismp.chinatelecom.com"
+        qname="ns:OrderRelationUpdateNotifyReq"
+        type="java:com.bxtel.dxgx.webservice1.OrderRelationUpdateNotifyReq"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rsp.sp.ismp.chinatelecom.com"
+        qname="ns:NotifyManagementInfoRsp"
+        type="java:com.bxtel.dxgx.webservice1.NotifyManagementInfoRsp"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://req.sp.ismp.chinatelecom.com"
+        qname="ns:NotifyManagementInfoReq"
+        type="java:com.bxtel.dxgx.webservice1.NotifyManagementInfoReq"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://req.sp.ismp.chinatelecom.com"
+        qname="ns:ServiceConsumeNotifyReq"
+        type="java:com.bxtel.dxgx.webservice1.ServiceConsumeNotifyReq"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://req.sp.ismp.chinatelecom.com"
+        qname="ns:SPWithdrawSubscriptionReq"
+        type="java:com.bxtel.dxgx.webservice1.SPWithdrawSubscriptionReq"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://rsp.sp.ismp.chinatelecom.com"
+        qname="ns:Response"
+        type="java:com.bxtel.dxgx.webservice1.Response"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
